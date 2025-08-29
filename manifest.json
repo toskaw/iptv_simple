@@ -1,0 +1,13 @@
+{
+	"short_name": "iptvweb",
+	"name": "iptvweb_app",
+	"display": "standalone",
+	"start_url": "webapp.html?file=./custom.m3u8",
+	"icons": [
+		{
+			"src": "imgs/iptvrec.png",
+			"sizes": "500x500",
+			"type": "image/png"
+		}
+	]
+}
