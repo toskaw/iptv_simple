@@ -110,6 +110,11 @@ if (isset($_REQUEST['csurl'])) {
     exit;
 }
 
+if (0 === strncmp($request_url, "./", 2)){
+    $current = empty($_SERVER['HTTPS']) ? 'http://' : 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    $request_url = preg_replace('/proxy.php/', substr($request_url, 2), $current);
+}
+
 $p_request_url = parse_url($request_url);
 
 // csurl may exist in GET request methods
