@@ -47,6 +47,16 @@
     color:#fff;
     font-size:1em;
     box-sizing:border-box}
+    #panel .program {display: none;}
+    #panel .program#now {
+	display: block;
+	.program-details {
+	    width:100%;
+	}
+	
+    }
+    #panel .program#now img{ display:none;}
+    #panel .program#now #startTime{ display:none;}
 @media screen and (max-width: 480px){
     body {
 	flex-direction:column-reverse;
@@ -133,6 +143,7 @@
     box-shadow:0 4px 8px rgb(0 0 0 / .3)}#upload-button:hover{background-color:#4fa3c4}
   </style>
   <div id=playlist>
+    <div id="panel">
     <form id="m3u" action="proxy.php" method="post">
     <div class=input-container>
       <input name="url-input" id=url-input placeholder="Enter M3U8 Playlist URL">
@@ -149,6 +160,7 @@
       EPG
     </button>
     <input id=search-input placeholder=Search...>
+    </div>
     <ul id=video-list>
     </ul>
   </div>
@@ -381,6 +393,7 @@ channel.channelName
 		     }
 		     listItem.classList.add('active');
 		     lastActiveChannel=listItem.innerHTML
+		     xmlepg.displayPrograms('panel', channel.tvgId);
 		 }
 		 videoList.appendChild(listItem)
 	     })
