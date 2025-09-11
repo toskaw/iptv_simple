@@ -171,7 +171,7 @@
   <script src=https://dbghelp.github.io/xml-epg.js>
   </script>
   <script>
-    const proxy=false; // cors proxy
+    const proxy=true; // cors proxy
 var xmlepg=new XMLEPG();
 var overlay=document.getElementById('overlay');
 var videoContainer=document.getElementById('video-container');
@@ -232,7 +232,9 @@ response.uri = original.substr(original.indexOf("orig=") + 5);
     	 player.load(file);
 	 videoElement.play()
     }
-
+    else {
+        setPlaylistFromUrl(m3u8Link);
+    }
     form.addEventListener('submit', function(event) {
 	event.preventDefault(); // デフォルト送信を防止
 	
