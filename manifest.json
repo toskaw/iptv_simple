@@ -10,8 +10,4 @@
 			"type": "image/png"
 		}
 	]
-    "exclude_from_cache": [
-        "proxy.php",
-	"custom_guides.xml"
-    ]
 }
