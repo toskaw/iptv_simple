@@ -237,14 +237,12 @@ response.uri = original.substr(original.indexOf("orig=") + 5);
     const m3u8Link='./custom.m3u8';
     var file = window.location.search;
     file = file.substr(file.indexOf("file=")+5);
-    if (file == m3u8Link) {
-        setPlaylistFromUrl(m3u8Link);
-    }
-    if (file) {
+    if (file != m3u8Link) {
     	 player.load(file);
 	 videoElement.play()
     }
     else {
+	fetch('proxy.php?cmd=update');
         setPlaylistFromUrl(m3u8Link);
     }
     form.addEventListener('submit', function(event) {

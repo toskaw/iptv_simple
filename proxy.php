@@ -103,6 +103,11 @@ if (isset($_REQUEST['csurl'])) {
     header('Content-Type: application/json');
     print(json_encode($ret));
     exit;
+} elseif (isset($_GET['cmd'])) {
+    if ($_GET['cmd'] === "update") {
+        update_epg();
+    }
+    exit;
 } else {
     header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
     header('Status: 404 Not Found');
@@ -218,6 +223,7 @@ function get_playlist($url) {
     if (preg_match('/url-tvg+?="([^"]*)"/', $playlist, $epgurl)) {
         $epg = file_get_contents($epgurl[1]);
         file_put_contents("custom_guides.xml", $epg);
+        file_put_contents("epgurl.txt", $epgurl[1]);
         // xml書き換え
         $playlist = preg_replace('/url-tvg+?="([^"]*)"/', 'url-tvg="./' . "custom_guides.xml" . '"', $playlist);
     }
@@ -230,4 +236,11 @@ function get_playlist($url) {
         'url' => $m3u8Url 
     );
     return $response;
+}
+function update_epg() {
+    $url = file_get_contents("epgurl.txt");
+    if ($url) {
+        $epg = file_get_contents($url);
+        file_put_contents("custom_guides.xml", $epg);
+    }
 }
